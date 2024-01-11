@@ -1,0 +1,176 @@
+// ESTRUTURA HTML BÁSICA:
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Calculadora Regra de 3</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Regra de Três</h1>
+        <div class="input-container">
+            <div class="input-group">
+                <input type="number" class="num1" placeholder="A"/>
+                <span>Está para</span>
+                <input type="number" class="num2" placeholder="B"/>
+            </div>
+
+            <p class="input-text">Assim como</p>
+
+            <div class="input-group">
+                <input type="number" class="num3" placeholder="C"/>
+                <span>Está para</span>
+                <p class="resultado">X</p>
+            </div>
+        </div>
+
+        <button class="calcular">Calcular</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+// ESTILIZAÇÃO:
+
+
+
+-> Reset da página:
+
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+-> Fundo da página:
+
+    body{
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(120deg, #ffe53bd8, #ff6a25da);
+    }
+
+-> Fundo do conteúdo da página:
+
+    .container{
+        background-color: #262626;
+        color:#e5e7eb;
+        box-shadow: 10px 10px 10px rgba(0,0,0,0.323);
+        border-radius: 8px;
+        padding: 20px;
+        text-align: center;
+    }
+
+-> Fundo da parte dos inputs da página:
+
+    .input-container{
+        margin:25px 0;
+    }
+
+-> Inputs da página:
+
+    .input-group{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .input-group input {
+        background-color: #343434;
+        color: #e5e7eb;
+        padding: 8px;
+        border: 1px solid #ffe53bd8;
+        border-radius: 4px;
+        width:100px;
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .input-group input:focus-visible{
+        outline:transparent;
+    }
+
+    .input-group span {
+        background-color:#343434;
+        padding:0 15px;
+    }
+
+    .input-group p {
+        background: linear-gradient(120deg, #ffe53bd8, #ff6a25da);
+        border-radius: 4px;
+        padding:10px;
+        width: 100px;
+    }
+
+-> Texto entre os inputs:
+
+    .input-text{
+        margin:15px 0;
+    }
+
+-> Botões:
+
+    .calcular {
+        background: linear-gradient(120deg, #ffe53bd8, #ff6a25da);
+        border:none;
+        cursor: pointer;
+        color:#e5e7eb;
+        border-radius: 4px;
+        padding: 10px;
+        font-size: 16px;
+        font-weight: 600;
+        width: 100%;
+        transition: background-color 0.5s ease;
+    }
+
+    .calcular:hover {
+        background-color: #ff6a25da;
+    }
+
+    .calcular:active{
+        opacity: 0.3;
+    }
+
+
+
+// SCRIPTS:
+
+
+-> Disparar um evento assim que o botão calcular for clicado:
+
+    document.querySelector('.calcular').addEventListener('click', function () {});
+
+-> Pegar os valores digitados em cada input:
+
+    const num1 = parseFloat(document.querySelector('.num1').value);
+    const num2 = parseFloat(document.querySelector('.num2').value);
+    const num3 = parseFloat(document.querySelector('.num3').value);
+
+-> Checar se um dos valores de input é inválido ou não:
+
+    if(isNaN(num1) || isNaN(num2) || isNaN(num3) || num1 === 0){
+        document.querySelector('.resultado').textContent = 'Inválido';
+        return;
+    }
+
+-> Efetuar o calculo:
+
+    let resultado = (num3 * num2) / num1;
+
+-> Checar se o valor é inteiro o decimal e expressar o resultado no campo de resultado:
+
+    if (Number.isInteger(resultado)) {
+        document.querySelector('.resultado').textContent = resultado;
+    }else{
+        document.querySelector('.resultado').textContent = resultado.toFixed(2);
+    }
+
